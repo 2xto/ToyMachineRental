@@ -41,11 +41,14 @@ public class Menu {
 
     private void transactionMenu() {
         int subChoice;
+
+        // Transaction rental submenu
+
         do {
             System.out.println("""
                                     
                     1. Create transaction
-                    2. Update transaction
+                    2. Edit transaction
                     3. Show transaction(s) of customer (by ID)
                     4. Show all transactions
                     5. Show rentals available for transactions
@@ -107,11 +110,14 @@ public class Menu {
 
     private void rentalMenu() {
         int subChoice;
+
+        // Rental submenu
+
         do {
             System.out.println("""
                                     
                     1. Create rental
-                    2. Update rental data
+                    2. Edit rental data
                     3. Show list of rentals
                     4. Delete rental
                     0. Go back
@@ -177,12 +183,14 @@ public class Menu {
     public void customerMenu() {
         int subChoice;
 
+        // Customer submenu
+
 
         do {
             System.out.println("""
                                     
                     1. Create customer
-                    2. Update customer data
+                    2. Edit customer data
                     3. Show list of customers
                     4. Delete customer
                     0. Go back

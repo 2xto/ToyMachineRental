@@ -24,7 +24,11 @@ public class RentalDatabase {
         return conn;
     }
 
+
+    // Inserting customer data to database
+
     protected void createCustomer(String name, String sureName) {
+
         String sql = "INSERT INTO customer (id_customer, name, sureName) VALUES (NULL,?,?)";
 
         try (Connection conn = this.connect();
@@ -45,6 +49,9 @@ public class RentalDatabase {
         }
     }
 
+
+    // Editing customer data in database.
+
     protected void updateCustomer(int id, String name, String sureName) {
         String sql = "UPDATE customer SET name=?, sureName=? WHERE id_customer=?";
 
@@ -62,6 +69,9 @@ public class RentalDatabase {
         }
 
     }
+
+
+    // Receiving list of customers form database.
 
     protected List<Customer> listCustomers() {
         List<Customer> customers = new LinkedList<>();
@@ -86,10 +96,16 @@ public class RentalDatabase {
         return customers;
     }
 
+
+    // Iterating of customers list.
+
     protected void showCustomers() {
         System.out.println("Customers list:");
         listCustomers().forEach(System.out::println);
     }
+
+
+    // Deleting customer from database.
 
     protected void deleteCustomer(int id) {
         String sql = "DELETE FROM customer WHERE id_customer=?;";
@@ -105,6 +121,9 @@ public class RentalDatabase {
             e.printStackTrace();
         }
     }
+
+
+    // Inserting rental item to database.
 
     protected void createRental(String type, String brand, String model, double price, double deposit) {
         String sql = "INSERT INTO rental (id_rental,type,brand,model,price,deposit) VALUES (NULL,?, ?, ?, ?, ?)";
@@ -129,6 +148,9 @@ public class RentalDatabase {
         }
     }
 
+
+    // Editing rental in database.
+
     protected void updateRental(int id, String type, String brand, String model, double price, double deposit) {
         String sql = "UPDATE rental SET type=?, brand=?, model=?, price=?, deposit=? WHERE id_rental=?";
 
@@ -149,6 +171,9 @@ public class RentalDatabase {
         }
     }
 
+
+    // Deleting rental from database.
+
     protected void deleteRental(int id) {
         String sql = "DELETE FROM rental WHERE id_rental=?";
 
@@ -165,12 +190,15 @@ public class RentalDatabase {
 
     }
 
-    public void showRental() {
+
+    // Iterating for of rental list.
+
+    protected void showRental() {
         System.out.println("Rentals list:");
         listRental().forEach(System.out::println);
     }
 
-    private List<Rental> listRental() {
+    protected List<Rental> listRental() {
         List<Rental> rentals = new LinkedList<>();
         String sql = "SELECT * FROM rental;";
 
@@ -196,6 +224,9 @@ public class RentalDatabase {
         return rentals;
     }
 
+
+    // Inserting transaction into database.
+
     public void createTransaction(int customerId, int rentalId) {
         String sql = "INSERT INTO transactions (id_transaction,id_customer,id_rental) VALUES (NULL,?,?)";
 
@@ -218,14 +249,22 @@ public class RentalDatabase {
         }
     }
 
+
+    // Printing to console specified rental item.
+
     protected void printRental(int rentalId) {
         listRental().stream().filter(r -> r.getId() == rentalId).forEach(System.out::println);
     }
+
+
+    // Printing to console specified customer.
 
     protected void printCustomer(int customerId) {
         listCustomers().stream().filter(c -> c.getId() == customerId).forEach(System.out::println);
     }
 
+
+    // Editing transaction.
 
     protected void updateTransaction(int id, int customerId, int rentalId) {
         String sql = "UPDATE transactions SET id_customer=?, id_rental=? WHERE id_rental=?";
@@ -241,6 +280,9 @@ public class RentalDatabase {
             e.printStackTrace();
         }
     }
+
+
+    // Deleting transaction form database.
 
     protected void closeTransaction(int rentalId) {
         String sql = "DELETE FROM transactions WHERE id_rental=?";
@@ -258,6 +300,8 @@ public class RentalDatabase {
 
     }
 
+
+    // Receiving list of transactions from database.
 
     protected List<Transaction> listTransactions() {
         List<Transaction> transactions = new LinkedList<>();
@@ -278,9 +322,10 @@ public class RentalDatabase {
             e.printStackTrace();
         }
         return transactions;
-
-
     }
+
+
+    // Printing list of transactions with details of customer and rental item.
 
     protected void showTransactions() {
         System.out.println("Transactions list:");
@@ -292,6 +337,9 @@ public class RentalDatabase {
         }
 
     }
+
+
+    // Receiving a list of rentals available for transaction from database.
 
     protected List<Rental> listRentalsAvailable() {
         List<Rental> rentalsAvailable = new LinkedList<>();
@@ -319,11 +367,16 @@ public class RentalDatabase {
         return rentalsAvailable;
     }
 
+
+    // Iterating over rental items available for transaction.
+
     protected void showRentalAvailable() {
         System.out.println("Available rentals list:");
         listRentalsAvailable().forEach(System.out::println);
     }
 
+
+    // Printing list of transactions with ID of transaction, customer and rental item. Extra printed customer and all rental items, both with full data.
 
     protected void showCustomerTransactions(int id) {
         System.out.println("Customer transactions List:");

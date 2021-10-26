@@ -2,6 +2,11 @@ package com.tmr;
 
 public class Transaction {
     private int id, idCustomer, idRentals;
+    public Transaction(int id, int idCustomer, int idRentals){
+        this.idCustomer=idCustomer;
+        this.idRentals=idRentals;
+        this.id=id;
+    }
 
     @Override
     public String toString() {
@@ -16,11 +21,7 @@ public class Transaction {
         this.id = id;
     }
 
-    public Transaction(int id, int idCustomer, int idRentals){
-        this.idCustomer=idCustomer;
-        this.idRentals=idRentals;
-        this.id=id;
-    }
+
 
     public int getIdCustomer() {
         return idCustomer;

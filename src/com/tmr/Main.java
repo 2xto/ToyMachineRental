@@ -14,6 +14,9 @@ public class Main {
 
     public static void main(String[] args) {
         fileName="rental.db";
+
+        //creating database
+
         createDatabase(fileName);
         createTable(fileName);
 
